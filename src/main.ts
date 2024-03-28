@@ -355,7 +355,7 @@ const handleClear = (event: Event) => {
   display.innerText = "0";
 };
 
-const handleMultiply = (event: Event) => {
+const handleMultiply = () => {
   if (display.innerText === "") {
     display.innerText = " ";
   } else if (display.innerText.charAt(display.innerText.length - 1) === "x") {
@@ -365,7 +365,7 @@ const handleMultiply = (event: Event) => {
   }
 };
 
-const handleDivide = (event: Event) => {
+const handleDivide = () => {
   if (display.innerText === "") {
     display.innerText = " ";
   } else if (display.innerText.charAt(display.innerText.length - 1) === "/") {
@@ -404,25 +404,67 @@ const handlePlusMinus = (event: Event) => {
   //if just a zero is on screen, don't change display
   if (display.innerText === "0") {
     display.innerText = "0";
-    // if there is no symbol and the first number is positive, change it to be negative 
-  } else if (firstNumber.charAt(0) !== "-" && (display.innerText.includes("+") === false)) {
-    display.innerText = `-${firstNumber}`
+    // if there is no symbol and the first number is positive, change it to be negative
+  } else if (
+    firstNumber.charAt(0) !== "-" &&
+    display.innerText.includes("+") === false
+  ) {
+    display.innerText = `-${firstNumber}`;
     // if there is no symbol and the first number is negative, change it to be positive
-  } else if (firstNumber.charAt(0) === "-" && (display.innerText.includes("+") === false)) {
-    display.innerText = `${firstNumber.slice(1)}`
-    // if there is a symbol, and the first number is positive, keep it positive. If the second number is positive, change it to be negative 
-  } else if (firstNumber.charAt(0) !== "-" && secondNumber.charAt(0) !== "-" && display.innerText.includes("+")) {
-    display.innerText = `${firstNumber} ${symbol} -${secondNumber}`
+  } else if (
+    firstNumber.charAt(0) === "-" &&
+    display.innerText.includes("+") === false
+  ) {
+    display.innerText = `${firstNumber.slice(1)}`;
+    // if there is a symbol, and the first number is positive, keep it positive. If the second number is positive, change it to be negative
+  } else if (
+    firstNumber.charAt(0) !== "-" &&
+    secondNumber.charAt(0) !== "-" &&
+    display.innerText.includes("+")
+  ) {
+    display.innerText = `${firstNumber} ${symbol} -${secondNumber}`;
     // if there is a symbol, and the first number is positive, keep it positive. If the second number is negative, change it to be positive
-  } else if (firstNumber.charAt(0) !== "-" && secondNumber.charAt(0) === "-" && display.innerText.includes("+")) {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber.slice(1)}`
-    // if there is a symbol, and the first number is negative, keep it negative. If the second number is positive, change it to be negative 
-  } else if (firstNumber.charAt(0) === "-" && secondNumber.charAt(0) !== "-" && display.innerText.includes("+")) {
-    display.innerText = `${firstNumber} ${symbol} -${secondNumber}`
+  } else if (
+    firstNumber.charAt(0) !== "-" &&
+    secondNumber.charAt(0) === "-" &&
+    display.innerText.includes("+")
+  ) {
+    display.innerText = `${firstNumber} ${symbol} ${secondNumber.slice(1)}`;
+    // if there is a symbol, and the first number is negative, keep it negative. If the second number is positive, change it to be negative
+  } else if (
+    firstNumber.charAt(0) === "-" &&
+    secondNumber.charAt(0) !== "-" &&
+    display.innerText.includes("+")
+  ) {
+    display.innerText = `${firstNumber} ${symbol} -${secondNumber}`;
   } // if there is a symbol, and the first number is negative, keep it negative. If the second number is negative, change it to be positive
-    else if (firstNumber.charAt(0) === "-" && secondNumber.charAt(0) === "-" && display.innerText.includes("+")) {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber.slice(1)}`
+  else if (
+    firstNumber.charAt(0) === "-" &&
+    secondNumber.charAt(0) === "-" &&
+    display.innerText.includes("+")
+  ) {
+    display.innerText = `${firstNumber} ${symbol} ${secondNumber.slice(1)}`;
   }
+};
+
+const handlePercentage = (event: Event) => {
+  // splits the string into an array
+  let splitEquation: string[] = display.innerText.split(" ");
+  let firstNumber: string = splitEquation[0];
+  let symbol: string = splitEquation[1];
+  let secondNumber: string = splitEquation[2];
+  //if just a zero is on screen, don't change display
+  if (display.innerText === "0") {
+    display.innerText = "0";
+    // if there is no symbol divide to first number by 100
+  } else if (display.innerText.includes("+") === false) {
+    display.innerText = Number(firstNumber) / 100;
+    // if there is a symbol, keep the first number the same and divide the second by 100
+  } else if (
+    display.innerText.includes("+")
+  ) {
+    display.innerText = `${firstNumber} ${symbol} ${Number(secondNumber)/100}`
+  };
 };
 
 const handleDecimal = (event: Event) => {
@@ -448,8 +490,7 @@ const handleEquals = (event: Event) => {
 
   // maths for simple equations
   if (finalEquation[1] === "+") {
-    display.innerText = (Number(finalEquation[0]) +
-      Number(finalEquation[2])) as number;
+    display.innerText = Number(finalEquation[0]) + Number(finalEquation[2]);
   } else if (finalEquation[1] === "x") {
     display.innerText = (Number(finalEquation[0]) *
       Number(finalEquation[2])) as number;
@@ -476,10 +517,10 @@ selectClear.addEventListener("click", handleClear);
 selectZero.addEventListener("click", handleZero);
 
 selectPlusMinus.addEventListener("click", handlePlusMinus);
-// selectPlusMinus.addEventListener("click", handleSecondMinus);
 selectAdd.addEventListener("click", handleAdd);
 selectDivide.addEventListener("click", handleDivide);
 selectMultiply.addEventListener("click", handleMultiply);
 selectSubtract.addEventListener("click", handlesubtract);
 selectEquals.addEventListener("click", handleEquals);
 selectDecimal.addEventListener("click", handleDecimal);
+selectpercentage.addEventListener("click", handlePercentage);
