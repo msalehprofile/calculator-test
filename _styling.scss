@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
+
+$color-number: rgb(254, 146, 205);
+$color-vertical: rgb(158, 163, 255);
+$color-horizontal: rgb(254, 193, 108);
+$color-shadow: rgb(202, 202, 202);
+$color-science: rgb(182, 218, 185);
+
+$font-size: 25px;
+$font-style: 'Reddit Mono', sans-serif;
+
+#app__screen {
+    box-shadow: 3px 4px 4px $color-shadow;
+    border: 1px solid $color-shadow;
+    border-radius: 15px ;
+    font-size: 45px;
+    font-family: $font-style;
+    font-weight: 400;
+    line-height: 40px;
+    
+}
+
+.app__button {
+    box-shadow: 3px 4px 4px $color-shadow;
+    border-radius: 15px;
+    font-size: $font-size;
+    font-family: $font-style;
+    font-weight: 700;
+
+    &--vertical {
+        background-color: $color-vertical;
+        border: 1px solid $color-vertical;
+
+        &:active {
+            background-color: darken($color-vertical, 5%);
+        }
+    }
+
+    &--main {
+        background-color: $color-number;
+        border: 1px solid $color-number;
+
+        &:active {
+            background-color: darken($color-number, 5%);
+        }
+    }
+
+    &--horizontal {
+        background-color: $color-horizontal;
+        border: 1px solid $color-horizontal;
+
+        &:active {
+            background-color: darken($color-horizontal, 5%);
+        }
+    }
+
+}
+
+.scientific-buttons {
+    .app__button {
+        font-size: 18px;
+        width: 70px;
+        font-weight: 300;
+        background-color: $color-science;
+        border: 1px solid $color-science;
+        &:active {
+            background-color: darken($color-science, 5%);
+        }
+    }
+}

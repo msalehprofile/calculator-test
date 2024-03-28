@@ -7,28 +7,108 @@
     <title>Vite + TS</title>
     <link rel="stylesheet" href="./styles.scss" />
   </head>
-  <body>
+  <body class="screen">
     <div id="app">
       <h1 id="app__screen">0</h1>
-      <button id="app__clear">C</button>
-      <button id="app__plus-minus">+/-</button>
-      <button id="app__percentage">%</button>
-      <button id="app__divide">÷</button>
-      <button id="app__seven">7</button>
-      <button id="app__eight">8</button>
-      <button id="app__nine">9</button>
-      <button id="app__multiply">x</button>
-      <button id="app__four">4</button>
-      <button id="app__five">5</button>
-      <button id="app__six">6</button>
-      <button id="app__subtract">-</button>
-      <button id="app__one">1</button>
-      <button id="app__two">2</button>
-      <button id="app__three">3</button>
-      <button id="app__plus">+</button>
-      <button id="app__zero">0</button>
-      <button id="app__decimal">.</button>
-      <button id="app__equals">=</button>
+      <div class="all-buttons">
+        <div class="scientific-buttons">
+          <button class="app__button">&#40;</button>
+          <button class="app__button">&#41;</button>
+          <button class="app__button">mc</button>
+          <button class="app__button">m+</button>
+          <button class="app__button">m-</button>
+          <button class="app__button">mr</button>
+          <button class="app__button">2<sup>nd</sup></button>
+          <button class="app__button">x<sup>2</sup></button>
+          <button class="app__button">x<sup>3</sup></button>
+          <button class="app__button">x<sup>y</sup></button>
+          <button class="app__button">e<sup>x</sup></button>
+          <button class="app__button">10<sup>x</sup></button>
+          <button class="app__button">1/x</button>
+          <button class="app__button">2√x</button>
+          <button class="app__button">3√x</button>
+          <button class="app__button">y√x</button>
+          <button class="app__button">ln</button>
+          <button class="app__button">log<sub>10</sub></button>
+          <button class="app__button">x!</button>
+          <button class="app__button">sin</button>
+          <button class="app__button">cos</button>
+          <button class="app__button">tan</button>
+          <button class="app__button">e</button>
+          <button class="app__button">EE</button>
+          <button class="app__button">Rad</button>
+          <button class="app__button">sinh</button>
+          <button class="app__button">cosh</button>
+          <button class="app__button">tanh</button>
+          <button class="app__button">Π</button>
+          <button class="app__button">Rand</button>
+        </div>
+        <div class="main__buttons">
+          <button id="app__clear" class="app__button app__button--vertical">
+            C
+          </button>
+          <button
+            id="app__plus-minus"
+            class="app__button app__button--vertical"
+          >
+            +/-
+          </button>
+          <button
+            id="app__percentage"
+            class="app__button app__button--vertical"
+          >
+            %
+          </button>
+          <button id="app__divide" class="app__button app__button--horizontal">
+            ÷
+          </button>
+          <button id="app__seven" class="app__button app__button--main">
+            7
+          </button>
+          <button id="app__eight" class="app__button app__button--main">
+            8
+          </button>
+          <button id="app__nine" class="app__button app__button--main">
+            9
+          </button>
+          <button
+            id="app__multiply"
+            class="app__button app__button--horizontal"
+          >
+            x
+          </button>
+          <button id="app__four" class="app__button app__button--main">
+            4
+          </button>
+          <button id="app__five" class="app__button app__button--main">
+            5
+          </button>
+          <button id="app__six" class="app__button app__button--main">6</button>
+          <button
+            id="app__subtract"
+            class="app__button app__button--horizontal"
+          >
+            -
+          </button>
+          <button id="app__one" class="app__button app__button--main">1</button>
+          <button id="app__two" class="app__button app__button--main">2</button>
+          <button id="app__three" class="app__button app__button--main">
+            3
+          </button>
+          <button id="app__plus" class="app__button app__button--horizontal">
+            +
+          </button>
+          <button id="app__zero" class="app__button app__button--main">
+            0
+          </button>
+          <button id="app__decimal" class="app__button app__button--main">
+            .
+          </button>
+          <button id="app__equals" class="app__button app__button--horizontal">
+            =
+          </button>
+        </div>
+      </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
