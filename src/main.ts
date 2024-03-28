@@ -62,6 +62,8 @@ if (
   throw new Error("issue with selectors");
 }
 
+// limiting the size of the display screen
+
 //functions to handle numbers on screen
 const handleNine = (event: Event) => {
   // if the first number is 0 then replace with selected number
@@ -89,6 +91,10 @@ const handleNine = (event: Event) => {
     display.innerText = display.innerText + " 9";
   } else {
     display.innerText = display.innerText + "9";
+  }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
   }
 };
 
@@ -120,6 +126,10 @@ const handleEight = (event: Event) => {
   } else {
     display.innerText = display.innerText + "8";
   }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
+  }
 };
 
 const handleSeven = (event: Event) => {
@@ -149,6 +159,10 @@ const handleSeven = (event: Event) => {
     display.innerText = display.innerText + " 7";
   } else {
     display.innerText = display.innerText + "7";
+  }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
   }
 };
 
@@ -180,6 +194,10 @@ const handleSix = (event: Event) => {
   } else {
     display.innerText = display.innerText + "6";
   }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
+  }
 };
 
 const handleFive = (event: Event) => {
@@ -209,6 +227,10 @@ const handleFive = (event: Event) => {
     display.innerText = display.innerText + " 5";
   } else {
     display.innerText = display.innerText + "5";
+  }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
   }
 };
 
@@ -240,6 +262,10 @@ const handleFour = (event: Event) => {
   } else {
     display.innerText = display.innerText + "4";
   }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
+  }
 };
 
 const handleThree = (event: Event) => {
@@ -269,6 +295,10 @@ const handleThree = (event: Event) => {
     display.innerText = display.innerText + " 3";
   } else {
     display.innerText = display.innerText + "3";
+  }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
   }
 };
 
@@ -300,6 +330,10 @@ const handleTwo = (event: Event) => {
   } else {
     display.innerText = display.innerText + "2";
   }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
+  }
 };
 
 const handleOne = (event: Event) => {
@@ -329,6 +363,9 @@ const handleOne = (event: Event) => {
     display.innerText = display.innerText + " 1";
   } else {
     display.innerText = display.innerText + "1";
+  } // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
   }
 };
 
@@ -346,6 +383,10 @@ const handleZero = (event: Event) => {
     display.innerText = display.innerText + " 0";
   } else {
     display.innerText = display.innerText + "0";
+  } 
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
   }
 };
 
@@ -363,6 +404,10 @@ const handleMultiply = () => {
   } else {
     display.innerText = display.innerText + " x";
   }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
+  }
 };
 
 const handleDivide = () => {
@@ -372,6 +417,10 @@ const handleDivide = () => {
     display.innerText;
   } else {
     display.innerText = display.innerText + " /";
+  }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
   }
 };
 
@@ -383,6 +432,10 @@ const handlesubtract = (event: Event) => {
   } else {
     display.innerText = display.innerText + " -";
   }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
+  }
 };
 
 const handleAdd = (event: Event) => {
@@ -392,6 +445,10 @@ const handleAdd = (event: Event) => {
     display.innerText;
   } else {
     display.innerText = display.innerText + " +";
+  } 
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
   }
 };
 
@@ -417,54 +474,118 @@ const handlePlusMinus = (event: Event) => {
   } else if (
     firstNumber.charAt(0) !== "-" &&
     secondNumber.charAt(0) !== "-" &&
-    symbol && !secondSymbol
+    symbol &&
+    !secondSymbol
   ) {
     display.innerText = `${firstNumber} ${symbol} -${secondNumber}`;
     // if there is a symbol,  but no second symbol, and the first number is positive, keep it positive. If the second number is negative, change it to be positive
   } else if (
     firstNumber.charAt(0) !== "-" &&
     secondNumber.charAt(0) === "-" &&
-    symbol && !secondSymbol
+    symbol &&
+    !secondSymbol
   ) {
     display.innerText = `${firstNumber} ${symbol} ${secondNumber.slice(1)}`;
     // if there is a symbol,  but no second symbol, and the first number is negative, keep it negative. If the second number is positive, change it to be negative
   } else if (
     firstNumber.charAt(0) === "-" &&
     secondNumber.charAt(0) !== "-" &&
-    symbol && !secondSymbol
+    symbol &&
+    !secondSymbol
   ) {
     display.innerText = `${firstNumber} ${symbol} -${secondNumber}`;
   } // if there is a symbol, but no second symbol, and the first number is negative, keep it negative. If the second number is negative, change it to be positive
   else if (
     firstNumber.charAt(0) === "-" &&
     secondNumber.charAt(0) === "-" &&
-    symbol && !secondSymbol
+    symbol &&
+    !secondSymbol
   ) {
     display.innerText = `${firstNumber} ${symbol} ${secondNumber.slice(1)}`;
   } // if there are two symbols, and all numbers are positive, make the last one negative
-  else if (symbol && secondSymbol && firstNumber.charAt(0) !== "-" && secondNumber.charAt(0) !== "-" && thirdNumber.charAt(0) !== "-") {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} -${thirdNumber}`
+  else if (
+    symbol &&
+    secondSymbol &&
+    firstNumber.charAt(0) !== "-" &&
+    secondNumber.charAt(0) !== "-" &&
+    thirdNumber.charAt(0) !== "-"
+  ) {
+    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} -${thirdNumber}`;
   } // if there are two symbols, the first two are positive but last is negative, change the last to be positive
-  else if (symbol && secondSymbol && firstNumber.charAt(0) !== "-" && secondNumber.charAt(0) !== "-" && thirdNumber.charAt(0) === "-") {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} ${thirdNumber.slice(1)}`
-  } // if there are two symbols, the first number is positive, second negative, third positive, change last to be negative 
-  else if (symbol && secondSymbol && firstNumber.charAt(0) !== "-" && secondNumber.charAt(0) === "-" && thirdNumber.charAt(0) !== "-") {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} -${thirdNumber}`
+  else if (
+    symbol &&
+    secondSymbol &&
+    firstNumber.charAt(0) !== "-" &&
+    secondNumber.charAt(0) !== "-" &&
+    thirdNumber.charAt(0) === "-"
+  ) {
+    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} ${thirdNumber.slice(
+      1
+    )}`;
+  } // if there are two symbols, the first number is positive, second negative, third positive, change last to be negative
+  else if (
+    symbol &&
+    secondSymbol &&
+    firstNumber.charAt(0) !== "-" &&
+    secondNumber.charAt(0) === "-" &&
+    thirdNumber.charAt(0) !== "-"
+  ) {
+    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} -${thirdNumber}`;
   } // if there are two symbols, the first number is positive, and second and third are negative, change the last to be positive
-  else if (symbol && secondSymbol && firstNumber.charAt(0) !== "-" && secondNumber.charAt(0) === "-" && thirdNumber.charAt(0) === "-") {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} ${thirdNumber.slice(1)}`
-  }  // if there are two symbols, the first number is negative, and second and third are positive, change the last to be negative
-  else if (symbol && secondSymbol && firstNumber.charAt(0) === "-" && secondNumber.charAt(0) !== "-" && thirdNumber.charAt(0) !== "-") {
-  display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} -${thirdNumber}`
+  else if (
+    symbol &&
+    secondSymbol &&
+    firstNumber.charAt(0) !== "-" &&
+    secondNumber.charAt(0) === "-" &&
+    thirdNumber.charAt(0) === "-"
+  ) {
+    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} ${thirdNumber.slice(
+      1
+    )}`;
+  } // if there are two symbols, the first number is negative, and second and third are positive, change the last to be negative
+  else if (
+    symbol &&
+    secondSymbol &&
+    firstNumber.charAt(0) === "-" &&
+    secondNumber.charAt(0) !== "-" &&
+    thirdNumber.charAt(0) !== "-"
+  ) {
+    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} -${thirdNumber}`;
   } // if there are two symbols, the first number is negative, second positive, and last negative, change the last to be positive
-  else if (symbol && secondSymbol && firstNumber.charAt(0) === "-" && secondNumber.charAt(0) !== "-" && thirdNumber.charAt(0) === "-") {
-  display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} ${thirdNumber.slice(1)}`
+  else if (
+    symbol &&
+    secondSymbol &&
+    firstNumber.charAt(0) === "-" &&
+    secondNumber.charAt(0) !== "-" &&
+    thirdNumber.charAt(0) === "-"
+  ) {
+    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} ${thirdNumber.slice(
+      1
+    )}`;
   } // if there are two symbols, the first and second numbers are negative, and the last positive, change the last to be negative
-  else if (symbol && secondSymbol && firstNumber.charAt(0) === "-" && secondNumber.charAt(0) === "-" && thirdNumber.charAt(0) !== "-") {
-  display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} -${thirdNumber}`
+  else if (
+    symbol &&
+    secondSymbol &&
+    firstNumber.charAt(0) === "-" &&
+    secondNumber.charAt(0) === "-" &&
+    thirdNumber.charAt(0) !== "-"
+  ) {
+    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} -${thirdNumber}`;
   } // if there are two symbols, if all numbers are negative, change the last to be positive
-  else if (symbol && secondSymbol && firstNumber.charAt(0) === "-" && secondNumber.charAt(0) === "-" && thirdNumber.charAt(0) === "-") {
-  display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} ${thirdNumber.slice(1)}`
+  else if (
+    symbol &&
+    secondSymbol &&
+    firstNumber.charAt(0) === "-" &&
+    secondNumber.charAt(0) === "-" &&
+    thirdNumber.charAt(0) === "-"
+  ) {
+    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} ${thirdNumber.slice(
+      1
+    )}`;
+  }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
   }
 };
 
@@ -489,7 +610,13 @@ const handlePercentage = (event: Event) => {
       Number(secondNumber) / 100
     }`;
   } else if (firstSymbol && secondSymbol) {
-    display.innerText = `${firstNumber} ${firstSymbol} ${secondNumber} ${secondSymbol} ${Number(thirdNumber)/100}`;
+    display.innerText = `${firstNumber} ${firstSymbol} ${secondNumber} ${secondSymbol} ${
+      Number(thirdNumber) / 100
+    }`;
+  }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
   }
 };
 
@@ -505,6 +632,10 @@ const handleDecimal = (event: Event) => {
     display.innerText = display.innerText + " 0.";
   } else {
     display.innerText = display.innerText + ".";
+  }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
   }
 };
 
@@ -546,20 +677,20 @@ const handleEquals = (event: Event) => {
   ) {
     display.innerText = firstNumber - secondNumber - thirdNumber;
   } // if the array length is 5, the first sybol is + and second symbol is /
-    else if (
-      firstSymbol === "+" &&
-      finalEquation.length == 5 &&
-      secondSymbol === "/"
+  else if (
+    firstSymbol === "+" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "/"
   ) {
-    display.innerText = firstNumber + (secondNumber / thirdNumber);
-  }// if the array length is 5, the first sybol is + and second symbol is *
-    else if (
-      firstSymbol === "+" &&
-      finalEquation.length == 5 &&
-      secondSymbol === "x"
-    ) {
-      display.innerText = firstNumber + (secondNumber * thirdNumber);
-  } 
+    display.innerText = firstNumber + secondNumber / thirdNumber;
+  } // if the array length is 5, the first sybol is + and second symbol is *
+  else if (
+    firstSymbol === "+" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "x"
+  ) {
+    display.innerText = firstNumber + secondNumber * thirdNumber;
+  }
   // minus first
   // if the array length is 5, and first symbol is - and second symbol is +
   else if (
@@ -576,49 +707,49 @@ const handleEquals = (event: Event) => {
   ) {
     display.innerText = firstNumber - secondNumber - thirdNumber;
   } // if the array length is 5, the first symbol is - and second symbol is /
-    else if (
-      firstSymbol === "-" &&
-      finalEquation.length == 5 &&
-      secondSymbol === "/"
+  else if (
+    firstSymbol === "-" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "/"
   ) {
-    display.innerText = firstNumber - (secondNumber / thirdNumber);
-  }// if the array length is 5, the first symbol is - and second symbol is *
-    else if (
-      firstSymbol === "-" &&
-      finalEquation.length == 5 &&
-      secondSymbol === "x"
-    ) {
-      display.innerText = firstNumber - (secondNumber * thirdNumber);
+    display.innerText = firstNumber - secondNumber / thirdNumber;
+  } // if the array length is 5, the first symbol is - and second symbol is *
+  else if (
+    firstSymbol === "-" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "x"
+  ) {
+    display.innerText = firstNumber - secondNumber * thirdNumber;
   }
-    // divide first
+  // divide first
   // if the array length is 5, and first symbol is / and second symbol is +
   else if (
     firstSymbol === "/" &&
     finalEquation.length == 5 &&
     secondSymbol === "+"
   ) {
-    display.innerText = (firstNumber / secondNumber) + thirdNumber;
+    display.innerText = firstNumber / secondNumber + thirdNumber;
   } // if the array length is 5, and first symbol is / and second symbol is -
   else if (
     firstSymbol === "/" &&
     finalEquation.length == 5 &&
     secondSymbol === "-"
   ) {
-    display.innerText = (firstNumber / secondNumber) - thirdNumber;
+    display.innerText = firstNumber / secondNumber - thirdNumber;
   } // if the array length is 5, the first and second symbol are /
-    else if (
-      firstSymbol === "/" &&
-      finalEquation.length == 5 &&
-      secondSymbol === "/"
+  else if (
+    firstSymbol === "/" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "/"
   ) {
     display.innerText = firstNumber / secondNumber / thirdNumber;
   } // if the array length is 5, the first symbol is / and second symbol is *
-    else if (
-      firstSymbol === "/" &&
-      finalEquation.length == 5 &&
-      secondSymbol === "x"
-    ) {
-      display.innerText = (firstNumber / secondNumber) * thirdNumber;
+  else if (
+    firstSymbol === "/" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "x"
+  ) {
+    display.innerText = (firstNumber / secondNumber) * thirdNumber;
   }
   // multiply first
   // if the array length is 5, and first symbol is * and second symbol is +
@@ -627,31 +758,34 @@ const handleEquals = (event: Event) => {
     finalEquation.length == 5 &&
     secondSymbol === "+"
   ) {
-    display.innerText = (firstNumber * secondNumber) + thirdNumber;
+    display.innerText = firstNumber * secondNumber + thirdNumber;
   } // if the array length is 5, and first symbol is * and second symbol is -
   else if (
     firstSymbol === "x" &&
     finalEquation.length == 5 &&
     secondSymbol === "-"
   ) {
-    display.innerText = (firstNumber * secondNumber) - thirdNumber;
+    display.innerText = firstNumber * secondNumber - thirdNumber;
   } // if the array length is 5, and first symbol is * and second symbol is /
-    else if (
-      firstSymbol === "x" &&
-      finalEquation.length == 5 &&
-      secondSymbol === "/"
+  else if (
+    firstSymbol === "x" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "/"
   ) {
-    display.innerText = firstNumber * secondNumber / thirdNumber;
+    display.innerText = (firstNumber * secondNumber) / thirdNumber;
   } // if the array length is 5, the first and second symbol are /
-    else if (
-      firstSymbol === "x" &&
-      finalEquation.length == 5 &&
-      secondSymbol === "x"
-    ) {
-      display.innerText = firstNumber * secondNumber * thirdNumber;
+  else if (
+    firstSymbol === "x" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "x"
+  ) {
+    display.innerText = firstNumber * secondNumber * thirdNumber;
+  }
+  // limiting digits on the screen
+  if (display.innerText.length >= 15) {
+    display.innerText = display.innerText.slice(1, 16);
   }
 };
-
 
 // event listeners
 selectNine.addEventListener("click", handleNine);
