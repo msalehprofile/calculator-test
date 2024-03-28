@@ -64,9 +64,23 @@ if (
 
 //functions to handle numbers on screen
 const handleNine = (event: Event) => {
-  if (display.innerText === "") {
+  // if the first number is 0 then replace with selected number
+  if (display.innerText === "0") {
     display.innerText = "9";
-  } else if (
+  } // if the last three characters are a symbol and a zero, replace the zero with a number
+  else if (
+    display.innerText.slice(-3) === "+ 0" ||
+    display.innerText.slice(-3) === "- 0" ||
+    display.innerText.slice(-3) === "/ 0" ||
+    display.innerText.slice(-3) === "x 0"
+  ) {
+    let oneAfterZero = display.innerText.split(" ");
+    let firstNumber = oneAfterZero[0];
+    let symbol = oneAfterZero[1];
+    let secondNumber = 9;
+    display.innerText = firstNumber + " " + symbol + " " + secondNumber;
+  } // if there is a symbol last, add a space and the selected number, if not just add the number to the end
+  else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "x" ||
@@ -79,9 +93,24 @@ const handleNine = (event: Event) => {
 };
 
 const handleEight = (event: Event) => {
-  if (display.innerText === "") {
+  // if the first number is 0 then replace with selected number
+  if (display.innerText === "0") {
     display.innerText = "8";
-  } else if (
+  } // if the last three characters are a symbol and a zero, replace the zero with a number
+  else if (
+    display.innerText.slice(-3) === "+ 0" ||
+    display.innerText.slice(-3) === "- 0" ||
+    display.innerText.slice(-3) === "/ 0" ||
+    display.innerText.slice(-3) === "x 0"
+  ) {
+    let oneAfterZero = display.innerText.split(" ");
+    console.log(oneAfterZero);
+    let firstNumber = oneAfterZero[0];
+    let symbol = oneAfterZero[1];
+    let secondNumber = 8;
+    display.innerText = firstNumber + " " + symbol + " " + secondNumber;
+  } // if there is a symbol last, add a space and the selected number, if not just add the number to the end
+  else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "x" ||
@@ -94,9 +123,24 @@ const handleEight = (event: Event) => {
 };
 
 const handleSeven = (event: Event) => {
-  if (display.innerText === "") {
+  // if the first number is 0 then replace with selected number
+  if (display.innerText === "0") {
     display.innerText = "7";
-  } else if (
+  } // if the last three characters are a symbol and a zero, replace the zero with a number
+  else if (
+    display.innerText.slice(-3) === "+ 0" ||
+    display.innerText.slice(-3) === "- 0" ||
+    display.innerText.slice(-3) === "/ 0" ||
+    display.innerText.slice(-3) === "x 0"
+  ) {
+    let oneAfterZero = display.innerText.split(" ");
+    console.log(oneAfterZero);
+    let firstNumber = oneAfterZero[0];
+    let symbol = oneAfterZero[1];
+    let secondNumber = 7;
+    display.innerText = firstNumber + " " + symbol + " " + secondNumber;
+  } // if there is a symbol last, add a space and the selected number, if not just add the number to the end
+  else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "x" ||
@@ -109,9 +153,24 @@ const handleSeven = (event: Event) => {
 };
 
 const handleSix = (event: Event) => {
-  if (display.innerText === "") {
+  // if the first number is 0 then replace with selected number
+  if (display.innerText === "0") {
     display.innerText = "6";
-  } else if (
+  } // if the last three characters are a symbol and a zero, replace the zero with a number
+  else if (
+    display.innerText.slice(-3) === "+ 0" ||
+    display.innerText.slice(-3) === "- 0" ||
+    display.innerText.slice(-3) === "/ 0" ||
+    display.innerText.slice(-3) === "x 0"
+  ) {
+    let oneAfterZero = display.innerText.split(" ");
+    console.log(oneAfterZero);
+    let firstNumber = oneAfterZero[0];
+    let symbol = oneAfterZero[1];
+    let secondNumber = 6;
+    display.innerText = firstNumber + " " + symbol + " " + secondNumber;
+  } // if there is a symbol last, add a space and the selected number, if not just add the number to the end
+  else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "x" ||
@@ -124,9 +183,24 @@ const handleSix = (event: Event) => {
 };
 
 const handleFive = (event: Event) => {
-  if (display.innerText === "") {
+  // if the first number is 0 then replace with selected number
+  if (display.innerText === "0") {
     display.innerText = "5";
-  } else if (
+  } // if the last three characters are a symbol and a zero, replace the zero with a number
+  else if (
+    display.innerText.slice(-3) === "+ 0" ||
+    display.innerText.slice(-3) === "- 0" ||
+    display.innerText.slice(-3) === "/ 0" ||
+    display.innerText.slice(-3) === "x 0"
+  ) {
+    let oneAfterZero = display.innerText.split(" ");
+    console.log(oneAfterZero);
+    let firstNumber = oneAfterZero[0];
+    let symbol = oneAfterZero[1];
+    let secondNumber = 5;
+    display.innerText = firstNumber + " " + symbol + " " + secondNumber;
+  } // if there is a symbol last, add a space and the selected number, if not just add the number to the end
+  else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "x" ||
@@ -139,9 +213,24 @@ const handleFive = (event: Event) => {
 };
 
 const handleFour = (event: Event) => {
-  if (display.innerText === "") {
+  // if the first number is 0 then replace with selected number
+  if (display.innerText === "0") {
     display.innerText = "4";
-  } else if (
+  } // if the last three characters are a symbol and a zero, replace the zero with a number
+  else if (
+    display.innerText.slice(-3) === "+ 0" ||
+    display.innerText.slice(-3) === "- 0" ||
+    display.innerText.slice(-3) === "/ 0" ||
+    display.innerText.slice(-3) === "x 0"
+  ) {
+    let oneAfterZero = display.innerText.split(" ");
+    console.log(oneAfterZero);
+    let firstNumber = oneAfterZero[0];
+    let symbol = oneAfterZero[1];
+    let secondNumber = 4;
+    display.innerText = firstNumber + " " + symbol + " " + secondNumber;
+  } // if there is a symbol last, add a space and the selected number, if not just add the number to the end
+  else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "x" ||
@@ -154,9 +243,24 @@ const handleFour = (event: Event) => {
 };
 
 const handleThree = (event: Event) => {
-  if (display.innerText === "") {
+  // if the first number is 0 then replace with selected number
+  if (display.innerText === "0") {
     display.innerText = "3";
-  } else if (
+  } // if the last three characters are a symbol and a zero, replace the zero with a number
+  else if (
+    display.innerText.slice(-3) === "+ 0" ||
+    display.innerText.slice(-3) === "- 0" ||
+    display.innerText.slice(-3) === "/ 0" ||
+    display.innerText.slice(-3) === "x 0"
+  ) {
+    let oneAfterZero = display.innerText.split(" ");
+    console.log(oneAfterZero);
+    let firstNumber = oneAfterZero[0];
+    let symbol = oneAfterZero[1];
+    let secondNumber = 3;
+    display.innerText = firstNumber + " " + symbol + " " + secondNumber;
+  } // if there is a symbol last, add a space and the selected number, if not just add the number to the end
+  else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "x" ||
@@ -169,9 +273,24 @@ const handleThree = (event: Event) => {
 };
 
 const handleTwo = (event: Event) => {
-  if (display.innerText === "") {
+  // if the first number is 0 then replace with selected number
+  if (display.innerText === "0") {
     display.innerText = "2";
-  } else if (
+  } // if the last three characters are a symbol and a zero, replace the zero with a number
+  else if (
+    display.innerText.slice(-3) === "+ 0" ||
+    display.innerText.slice(-3) === "- 0" ||
+    display.innerText.slice(-3) === "/ 0" ||
+    display.innerText.slice(-3) === "x 0"
+  ) {
+    let oneAfterZero = display.innerText.split(" ");
+    console.log(oneAfterZero);
+    let firstNumber = oneAfterZero[0];
+    let symbol = oneAfterZero[1];
+    let secondNumber = 2;
+    display.innerText = firstNumber + " " + symbol + " " + secondNumber;
+  } // if there is a symbol last, add a space and the selected number, if not just add the number to the end
+  else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "x" ||
@@ -184,9 +303,24 @@ const handleTwo = (event: Event) => {
 };
 
 const handleOne = (event: Event) => {
-  if (display.innerText === "") {
+  // if the first number is 0 then replace with selected number
+  if (display.innerText === "0") {
     display.innerText = "1";
-  } else if (
+  } // if the last three characters are a symbol and a zero, replace the zero with a number
+  else if (
+    display.innerText.slice(-3) === "+ 0" ||
+    display.innerText.slice(-3) === "- 0" ||
+    display.innerText.slice(-3) === "/ 0" ||
+    display.innerText.slice(-3) === "x 0"
+  ) {
+    let oneAfterZero = display.innerText.split(" ");
+    console.log(oneAfterZero);
+    let firstNumber = oneAfterZero[0];
+    let symbol = oneAfterZero[1];
+    let secondNumber = 1;
+    display.innerText = firstNumber + " " + symbol + " " + secondNumber;
+  } /// if there is a symbol last, add a space and the selected number, if not just add the number to the end
+  else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "x" ||
@@ -199,15 +333,17 @@ const handleOne = (event: Event) => {
 };
 
 const handleZero = (event: Event) => {
-  if (display.innerText === "") {
-    display.innerText = " ";
-  } else if (
+  // if the first number is 0 then keep it 0
+  if (display.innerText === "0") {
+    display.innerText = display.innerText;
+  } // if there is a symbol last, add a space and the selected number, if not just add the number to the end
+  else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "x" ||
     display.innerText.charAt(display.innerText.length - 1) === "/"
   ) {
-    display.innerText = display.innerText + " ";
+    display.innerText = display.innerText + " 0";
   } else {
     display.innerText = display.innerText + "0";
   }
@@ -216,7 +352,7 @@ const handleZero = (event: Event) => {
 //functions to handle symbols on screen. Making sure they can't be repeated
 
 const handleClear = (event: Event) => {
-  display.innerText = " ";
+  display.innerText = "0";
 };
 
 const handleMultiply = (event: Event) => {
@@ -260,45 +396,45 @@ const handleAdd = (event: Event) => {
 };
 
 const handlePlusMinus = (event: Event) => {
-  if (display.innerText === "") {
-    display.innerText = " ";
-  } else if (display.innerText.charAt(0) === "-") {
-    display.innerText = display.innerText.substring(1);
-  } else {
-    display.innerText = " -" + display.innerText;
-  }
-};
-
-const handleSecondMinus = (event: Event) => {
-  if (
-    display.innerText.includes("+") ||
-    display.innerText.includes("-") ||
-    display.innerText.includes("/") ||
-    display.innerText.includes("x")
-  ) {
-    let secondMinus: string = display.innerText;
-    let splitEquation = secondMinus.split(" ").map((number) => "-" + number);
-    let symbolIdentifyer = splitEquation[1].substring(1);
-    let firstNumber = splitEquation[0].substring(1);
-    let lastNumber = splitEquation[2];
-    if (lastNumber.charAt(0) === "-") {
-      display.innerText = lastNumber.substring(1);
-    }
-    display.innerText = firstNumber + " " + symbolIdentifyer + " " + lastNumber;
-    console.log(display.innerText);
+  // splits the string into an array
+  let splitEquation: string[] = display.innerText.split(" ");
+  let firstNumber: string = splitEquation[0];
+  let symbol: string = splitEquation[1];
+  let secondNumber: string = splitEquation[2];
+  //if just a zero is on screen, don't change display
+  if (display.innerText === "0") {
+    display.innerText = "0";
+    // if there is no symbol and the first number is positive, change it to be negative 
+  } else if (firstNumber.charAt(0) !== "-" && (display.innerText.includes("+") === false)) {
+    display.innerText = `-${firstNumber}`
+    // if there is no symbol and the first number is negative, change it to be positive
+  } else if (firstNumber.charAt(0) === "-" && (display.innerText.includes("+") === false)) {
+    display.innerText = `${firstNumber.slice(1)}`
+    // if there is a symbol, and the first number is positive, keep it positive. If the second number is positive, change it to be negative 
+  } else if (firstNumber.charAt(0) !== "-" && secondNumber.charAt(0) !== "-" && display.innerText.includes("+")) {
+    display.innerText = `${firstNumber} ${symbol} -${secondNumber}`
+    // if there is a symbol, and the first number is positive, keep it positive. If the second number is negative, change it to be positive
+  } else if (firstNumber.charAt(0) !== "-" && secondNumber.charAt(0) === "-" && display.innerText.includes("+")) {
+    display.innerText = `${firstNumber} ${symbol} ${secondNumber.slice(1)}`
+    // if there is a symbol, and the first number is negative, keep it negative. If the second number is positive, change it to be negative 
+  } else if (firstNumber.charAt(0) === "-" && secondNumber.charAt(0) !== "-" && display.innerText.includes("+")) {
+    display.innerText = `${firstNumber} ${symbol} -${secondNumber}`
+  } // if there is a symbol, and the first number is negative, keep it negative. If the second number is negative, change it to be positive
+    else if (firstNumber.charAt(0) === "-" && secondNumber.charAt(0) === "-" && display.innerText.includes("+")) {
+    display.innerText = `${firstNumber} ${symbol} ${secondNumber.slice(1)}`
   }
 };
 
 const handleDecimal = (event: Event) => {
   if (display.innerText === "") {
-    display.innerText = " ";
+    display.innerText = " 0.";
   } else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "x" ||
     display.innerText.charAt(display.innerText.length - 1) === "/"
   ) {
-    display.innerText = display.innerText + " ";
+    display.innerText = display.innerText + " 0.";
   } else {
     display.innerText = display.innerText + ".";
   }
@@ -340,7 +476,7 @@ selectClear.addEventListener("click", handleClear);
 selectZero.addEventListener("click", handleZero);
 
 selectPlusMinus.addEventListener("click", handlePlusMinus);
-selectPlusMinus.addEventListener("click", handleSecondMinus);
+// selectPlusMinus.addEventListener("click", handleSecondMinus);
 selectAdd.addEventListener("click", handleAdd);
 selectDivide.addEventListener("click", handleDivide);
 selectMultiply.addEventListener("click", handleMultiply);
