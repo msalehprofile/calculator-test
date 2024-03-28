@@ -405,43 +405,37 @@ const handlePlusMinus = (event: Event) => {
   if (display.innerText === "0") {
     display.innerText = "0";
     // if there is no symbol and the first number is positive, change it to be negative
-  } else if (
-    firstNumber.charAt(0) !== "-" &&
-    display.innerText.includes("+") === false
-  ) {
+  } else if (firstNumber.charAt(0) !== "-" && !symbol) {
     display.innerText = `-${firstNumber}`;
     // if there is no symbol and the first number is negative, change it to be positive
-  } else if (
-    firstNumber.charAt(0) === "-" &&
-    display.innerText.includes("+") === false
-  ) {
+  } else if (firstNumber.charAt(0) === "-" && !symbol) {
     display.innerText = `${firstNumber.slice(1)}`;
     // if there is a symbol, and the first number is positive, keep it positive. If the second number is positive, change it to be negative
   } else if (
     firstNumber.charAt(0) !== "-" &&
     secondNumber.charAt(0) !== "-" &&
-    display.innerText.includes("+")
+    symbol
   ) {
     display.innerText = `${firstNumber} ${symbol} -${secondNumber}`;
     // if there is a symbol, and the first number is positive, keep it positive. If the second number is negative, change it to be positive
   } else if (
     firstNumber.charAt(0) !== "-" &&
     secondNumber.charAt(0) === "-" &&
-    display.innerText.includes("+")
+    symbol
   ) {
     display.innerText = `${firstNumber} ${symbol} ${secondNumber.slice(1)}`;
     // if there is a symbol, and the first number is negative, keep it negative. If the second number is positive, change it to be negative
   } else if (
     firstNumber.charAt(0) === "-" &&
     secondNumber.charAt(0) !== "-" &&
-    display.innerText.includes("+")
+    symbol
   ) {
     display.innerText = `${firstNumber} ${symbol} -${secondNumber}`;
   } // if there is a symbol, and the first number is negative, keep it negative. If the second number is negative, change it to be positive
   else if (
     firstNumber.charAt(0) === "-" &&
     secondNumber.charAt(0) === "-" &&
-    display.innerText.includes("+")
+    symbol
   ) {
     display.innerText = `${firstNumber} ${symbol} ${secondNumber.slice(1)}`;
   }
@@ -457,14 +451,14 @@ const handlePercentage = (event: Event) => {
   if (display.innerText === "0") {
     display.innerText = "0";
     // if there is no symbol divide to first number by 100
-  } else if (display.innerText.includes("+") === false) {
+  } else if (!symbol) {
     display.innerText = Number(firstNumber) / 100;
     // if there is a symbol, keep the first number the same and divide the second by 100
-  } else if (
-    display.innerText.includes("+")
-  ) {
-    display.innerText = `${firstNumber} ${symbol} ${Number(secondNumber)/100}`
-  };
+  } else if (symbol) {
+    display.innerText = `${firstNumber} ${symbol} ${
+      Number(secondNumber) / 100
+    }`;
+  }
 };
 
 const handleDecimal = (event: Event) => {
@@ -486,22 +480,146 @@ const handleDecimal = (event: Event) => {
 const handleEquals = (event: Event) => {
   let finalEquation: string = display.innerText;
   finalEquation = finalEquation.split(" ");
-  console.log(finalEquation);
+  let firstNumber: number = Number(finalEquation[0]);
+  let firstSymbol: string = finalEquation[1];
+  let secondNumber: number = Number(finalEquation[2]);
+  let secondSymbol: string = finalEquation[3];
+  let thirdNumber: number = Number(finalEquation[4]);
 
-  // maths for simple equations
-  if (finalEquation[1] === "+") {
-    display.innerText = Number(finalEquation[0]) + Number(finalEquation[2]);
-  } else if (finalEquation[1] === "x") {
-    display.innerText = (Number(finalEquation[0]) *
-      Number(finalEquation[2])) as number;
-  } else if (finalEquation[1] === "/") {
-    display.innerText = (Number(finalEquation[0]) /
-      Number(finalEquation[2])) as number;
-  } else if (finalEquation[1] === "-") {
-    display.innerText = (Number(finalEquation[0]) -
-      Number(finalEquation[2])) as number;
+  // maths equations
+  // if the array length is 3 and the first symbol is + then add the numbers together
+  if (firstSymbol === "+" && finalEquation.length == 3) {
+    display.innerText = firstNumber + secondNumber;
+  } // if the array length is 3 and the first symbol is - then subtract
+  else if (firstSymbol === "-" && finalEquation.length == 3) {
+    display.innerText = firstNumber - secondNumber;
+  } // if the array length is 3 and the first symbol is x then times the numbers together
+  else if (firstSymbol === "x" && finalEquation.length == 3) {
+    display.innerText = firstNumber * secondNumber;
+  } // if the array length is 3 and the first symbol is / then divide the numbers
+  else if (firstSymbol === "/" && finalEquation.length == 3) {
+    display.innerText = firstNumber / secondNumber;
+  } // if the array length is 5, and first and second symbols are + then add all together
+  else if (
+    firstSymbol === "+" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "+"
+  ) {
+    display.innerText = firstNumber + secondNumber + thirdNumber;
+  } // if the array length is 5, the first sybol is + and second symbol is -
+  else if (
+    firstSymbol === "+" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "-"
+  ) {
+    display.innerText = firstNumber - secondNumber - thirdNumber;
+  } // if the array length is 5, the first sybol is + and second symbol is /
+    else if (
+      firstSymbol === "+" &&
+      finalEquation.length == 5 &&
+      secondSymbol === "/"
+  ) {
+    display.innerText = firstNumber + (secondNumber / thirdNumber);
+  }// if the array length is 5, the first sybol is + and second symbol is *
+    else if (
+      firstSymbol === "+" &&
+      finalEquation.length == 5 &&
+      secondSymbol === "x"
+    ) {
+      display.innerText = firstNumber + (secondNumber * thirdNumber);
+  } 
+  // minus first
+  // if the array length is 5, and first symbol is - and second symbol is +
+  else if (
+    firstSymbol === "-" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "+"
+  ) {
+    display.innerText = firstNumber - secondNumber + thirdNumber;
+  } // if the array length is 5, and first and second symbols are - then subract
+  else if (
+    firstSymbol === "-" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "-"
+  ) {
+    display.innerText = firstNumber - secondNumber - thirdNumber;
+  } // if the array length is 5, the first symbol is - and second symbol is /
+    else if (
+      firstSymbol === "-" &&
+      finalEquation.length == 5 &&
+      secondSymbol === "/"
+  ) {
+    display.innerText = firstNumber - (secondNumber / thirdNumber);
+  }// if the array length is 5, the first symbol is - and second symbol is *
+    else if (
+      firstSymbol === "-" &&
+      finalEquation.length == 5 &&
+      secondSymbol === "x"
+    ) {
+      display.innerText = firstNumber - (secondNumber * thirdNumber);
+  }
+    // divide first
+  // if the array length is 5, and first symbol is / and second symbol is +
+  else if (
+    firstSymbol === "/" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "+"
+  ) {
+    display.innerText = (firstNumber / secondNumber) + thirdNumber;
+  } // if the array length is 5, and first symbol is / and second symbol is -
+  else if (
+    firstSymbol === "/" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "-"
+  ) {
+    display.innerText = (firstNumber / secondNumber) - thirdNumber;
+  } // if the array length is 5, the first and second symbol are /
+    else if (
+      firstSymbol === "/" &&
+      finalEquation.length == 5 &&
+      secondSymbol === "/"
+  ) {
+    display.innerText = firstNumber / secondNumber / thirdNumber;
+  } // if the array length is 5, the first symbol is / and second symbol is *
+    else if (
+      firstSymbol === "/" &&
+      finalEquation.length == 5 &&
+      secondSymbol === "x"
+    ) {
+      display.innerText = (firstNumber / secondNumber) * thirdNumber;
+  }
+  // multiply first
+  // if the array length is 5, and first symbol is * and second symbol is +
+  else if (
+    firstSymbol === "x" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "+"
+  ) {
+    display.innerText = (firstNumber * secondNumber) + thirdNumber;
+  } // if the array length is 5, and first symbol is * and second symbol is -
+  else if (
+    firstSymbol === "x" &&
+    finalEquation.length == 5 &&
+    secondSymbol === "-"
+  ) {
+    display.innerText = (firstNumber * secondNumber) - thirdNumber;
+  } // if the array length is 5, and first symbol is * and second symbol is /
+    else if (
+      firstSymbol === "x" &&
+      finalEquation.length == 5 &&
+      secondSymbol === "/"
+  ) {
+    display.innerText = firstNumber * secondNumber / thirdNumber;
+  } // if the array length is 5, the first and second symbol are /
+    else if (
+      firstSymbol === "x" &&
+      finalEquation.length == 5 &&
+      secondSymbol === "x"
+    ) {
+      display.innerText = firstNumber * secondNumber * thirdNumber;
   }
 };
+
 
 // event listeners
 selectNine.addEventListener("click", handleNine);
