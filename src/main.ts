@@ -2,6 +2,14 @@
 
 const display = document.querySelector<HTMLHeadingElement>("#app__screen");
 
+// background query selector
+let background = document.querySelector("body");
+const date = new Date();
+const hour = date.getHours();
+
+// change background colour if it is later than 7pm
+
+
 // number query selectors
 const selectOne = document.querySelector<HTMLButtonElement>("#app__one");
 const selectTwo = document.querySelector<HTMLButtonElement>("#app__two");
@@ -42,7 +50,8 @@ if (
   !selectNine ||
   !display ||
   !selectClear ||
-  !selectZero
+  !selectZero ||
+  !background
 ) {
   throw new Error("issue with selectors");
 }
@@ -93,8 +102,8 @@ const handleNine = (event: Event) => {
     display.innerText = display.innerText + "9";
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -127,8 +136,8 @@ const handleEight = (event: Event) => {
     display.innerText = display.innerText + "8";
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -161,8 +170,8 @@ const handleSeven = (event: Event) => {
     display.innerText = display.innerText + "7";
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -195,8 +204,8 @@ const handleSix = (event: Event) => {
     display.innerText = display.innerText + "6";
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -229,8 +238,8 @@ const handleFive = (event: Event) => {
     display.innerText = display.innerText + "5";
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -263,8 +272,8 @@ const handleFour = (event: Event) => {
     display.innerText = display.innerText + "4";
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -272,6 +281,9 @@ const handleThree = (event: Event) => {
   // if the first number is 0 then replace with selected number
   if (display.innerText === "0") {
     display.innerText = "3";
+  } // limiting digits on the screen
+    else if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(0, 15);
   } // if the last three characters are a symbol and a zero, replace the zero with a number
   else if (
     display.innerText.slice(-3) === "+ 0" ||
@@ -296,10 +308,7 @@ const handleThree = (event: Event) => {
   } else {
     display.innerText = display.innerText + "3";
   }
-  // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
-  }
+  
 };
 
 const handleTwo = (event: Event) => {
@@ -331,8 +340,8 @@ const handleTwo = (event: Event) => {
     display.innerText = display.innerText + "2";
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -340,7 +349,10 @@ const handleOne = (event: Event) => {
   // if the first number is 0 then replace with selected number
   if (display.innerText === "0") {
     display.innerText = "1";
-  } // if the last three characters are a symbol and a zero, replace the zero with a number
+  } // limiting digits on the screen
+  else if (display.innerText.length >= 14) {
+  display.innerText = display.innerText.slice(0, 15);
+} // if the last three characters are a symbol and a zero, replace the zero with a number
   else if (
     display.innerText.slice(-3) === "+ 0" ||
     display.innerText.slice(-3) === "- 0" ||
@@ -364,8 +376,8 @@ const handleOne = (event: Event) => {
   } else {
     display.innerText = display.innerText + "1";
   } // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -383,10 +395,10 @@ const handleZero = (event: Event) => {
     display.innerText = display.innerText + " 0";
   } else {
     display.innerText = display.innerText + "0";
-  } 
+  }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -405,8 +417,8 @@ const handleMultiply = () => {
     display.innerText = display.innerText + " x";
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -419,8 +431,8 @@ const handleDivide = () => {
     display.innerText = display.innerText + " /";
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -433,8 +445,8 @@ const handlesubtract = (event: Event) => {
     display.innerText = display.innerText + " -";
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -445,10 +457,10 @@ const handleAdd = (event: Event) => {
     display.innerText;
   } else {
     display.innerText = display.innerText + " +";
-  } 
+  }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -584,8 +596,8 @@ const handlePlusMinus = (event: Event) => {
     )}`;
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -615,14 +627,16 @@ const handlePercentage = (event: Event) => {
     }`;
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
 const handleDecimal = (event: Event) => {
-  if (display.innerText === "") {
+  if (display.innerText === "0") {
     display.innerText = " 0.";
+  } else if (display.innerText.charAt(display.innerText.length - 1) === ".") {
+    display.innerText = display.innerText;
   } else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
@@ -634,8 +648,8 @@ const handleDecimal = (event: Event) => {
     display.innerText = display.innerText + ".";
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -782,8 +796,8 @@ const handleEquals = (event: Event) => {
     display.innerText = firstNumber * secondNumber * thirdNumber;
   }
   // limiting digits on the screen
-  if (display.innerText.length >= 15) {
-    display.innerText = display.innerText.slice(1, 16);
+  if (display.innerText.length >= 14) {
+    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
@@ -808,3 +822,4 @@ selectSubtract.addEventListener("click", handlesubtract);
 selectEquals.addEventListener("click", handleEquals);
 selectDecimal.addEventListener("click", handleDecimal);
 selectpercentage.addEventListener("click", handlePercentage);
+
