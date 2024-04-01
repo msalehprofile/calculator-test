@@ -36,11 +36,16 @@ if (!selectpercentage || !selectPlusMinus || !selectEquals) {
   throw new Error("issue with selectors");
 }
 
+// function for adding numbers onto screen
 selectInput.forEach((number) => {
   number.addEventListener("click", () => {
     if (display.innerText === "0") {
       display.innerText = number.getAttribute("id");
-    } // if there is a symbol last, add a space and the selected number, if not just add the number to the end
+    } else if (display.innerText.length >= 12) {
+      display.innerText = display.innerText
+    }
+    
+    // if there is a symbol last, add a space and the selected number, if not just add the number to the end
     else if (
       display.innerText.charAt(display.innerText.length - 1) === "+" ||
       display.innerText.charAt(display.innerText.length - 1) === "-" ||
@@ -64,11 +69,14 @@ selectInput.forEach((number) => {
   });
 });
 
+// function for adding symbols onto screen
 selectSymbol.forEach((symbol) => {
   symbol.addEventListener("click", () => {
 
     if (display.innerText === "0") {
       display.innerText = display.innerText;
+    } else if (display.innerText.length >= 12) {
+      display.innerText = display.innerText
     } else if (
       symbol.getAttribute("id") === "+" ||
       symbol.getAttribute("id") === "-" ||
@@ -82,177 +90,46 @@ selectSymbol.forEach((symbol) => {
 });
 
 //functions to handle symbols on screen. Making sure they can't be repeated
-
 const handleClear = (event: Event) => {
   display.innerText = "0";
 };
 
 const handlePlusMinus = (event: Event) => {
   // splits the string into an array
-  let splitEquation: string[] = display.innerText.split(" ");
-  let firstNumber: string = splitEquation[0];
-  let symbol: string = splitEquation[1];
-  let secondNumber: string = splitEquation[2];
-  let secondSymbol: string = splitEquation[3];
-  let thirdNumber: string = splitEquation[4];
+  let splitEquation: string[] = display.innerText.split(" ").reverse();
+  let lastNumber:string = splitEquation[0]
+  console.log(lastNumber)
 
   //if just a zero is on screen, don't change display
   if (display.innerText === "0") {
     display.innerText = "0";
-    // if there is no symbol and the first number is positive, change it to be negative
-  } else if (firstNumber.charAt(0) !== "-" && !symbol) {
-    display.innerText = `-${firstNumber}`;
-    // if there is no symbol and the first number is negative, change it to be positive
-  } else if (firstNumber.charAt(0) === "-" && !symbol) {
-    display.innerText = `${firstNumber.slice(1)}`;
-    // if there is a first symbol, but no second symbol, and the first number is positive, keep it positive. If the second number is positive, change it to be negative
-  } else if (
-    firstNumber.charAt(0) !== "-" &&
-    secondNumber.charAt(0) !== "-" &&
-    symbol &&
-    !secondSymbol
-  ) {
-    display.innerText = `${firstNumber} ${symbol} -${secondNumber}`;
-    // if there is a symbol,  but no second symbol, and the first number is positive, keep it positive. If the second number is negative, change it to be positive
-  } else if (
-    firstNumber.charAt(0) !== "-" &&
-    secondNumber.charAt(0) === "-" &&
-    symbol &&
-    !secondSymbol
-  ) {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber.slice(1)}`;
-    // if there is a symbol,  but no second symbol, and the first number is negative, keep it negative. If the second number is positive, change it to be negative
-  } else if (
-    firstNumber.charAt(0) === "-" &&
-    secondNumber.charAt(0) !== "-" &&
-    symbol &&
-    !secondSymbol
-  ) {
-    display.innerText = `${firstNumber} ${symbol} -${secondNumber}`;
-  } // if there is a symbol, but no second symbol, and the first number is negative, keep it negative. If the second number is negative, change it to be positive
-  else if (
-    firstNumber.charAt(0) === "-" &&
-    secondNumber.charAt(0) === "-" &&
-    symbol &&
-    !secondSymbol
-  ) {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber.slice(1)}`;
-  } // if there are two symbols, and all numbers are positive, make the last one negative
-  else if (
-    symbol &&
-    secondSymbol &&
-    firstNumber.charAt(0) !== "-" &&
-    secondNumber.charAt(0) !== "-" &&
-    thirdNumber.charAt(0) !== "-"
-  ) {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} -${thirdNumber}`;
-  } // if there are two symbols, the first two are positive but last is negative, change the last to be positive
-  else if (
-    symbol &&
-    secondSymbol &&
-    firstNumber.charAt(0) !== "-" &&
-    secondNumber.charAt(0) !== "-" &&
-    thirdNumber.charAt(0) === "-"
-  ) {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} ${thirdNumber.slice(
-      1
-    )}`;
-  } // if there are two symbols, the first number is positive, second negative, third positive, change last to be negative
-  else if (
-    symbol &&
-    secondSymbol &&
-    firstNumber.charAt(0) !== "-" &&
-    secondNumber.charAt(0) === "-" &&
-    thirdNumber.charAt(0) !== "-"
-  ) {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} -${thirdNumber}`;
-  } // if there are two symbols, the first number is positive, and second and third are negative, change the last to be positive
-  else if (
-    symbol &&
-    secondSymbol &&
-    firstNumber.charAt(0) !== "-" &&
-    secondNumber.charAt(0) === "-" &&
-    thirdNumber.charAt(0) === "-"
-  ) {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} ${thirdNumber.slice(
-      1
-    )}`;
-  } // if there are two symbols, the first number is negative, and second and third are positive, change the last to be negative
-  else if (
-    symbol &&
-    secondSymbol &&
-    firstNumber.charAt(0) === "-" &&
-    secondNumber.charAt(0) !== "-" &&
-    thirdNumber.charAt(0) !== "-"
-  ) {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} -${thirdNumber}`;
-  } // if there are two symbols, the first number is negative, second positive, and last negative, change the last to be positive
-  else if (
-    symbol &&
-    secondSymbol &&
-    firstNumber.charAt(0) === "-" &&
-    secondNumber.charAt(0) !== "-" &&
-    thirdNumber.charAt(0) === "-"
-  ) {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} ${thirdNumber.slice(
-      1
-    )}`;
-  } // if there are two symbols, the first and second numbers are negative, and the last positive, change the last to be negative
-  else if (
-    symbol &&
-    secondSymbol &&
-    firstNumber.charAt(0) === "-" &&
-    secondNumber.charAt(0) === "-" &&
-    thirdNumber.charAt(0) !== "-"
-  ) {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} -${thirdNumber}`;
-  } // if there are two symbols, if all numbers are negative, change the last to be positive
-  else if (
-    symbol &&
-    secondSymbol &&
-    firstNumber.charAt(0) === "-" &&
-    secondNumber.charAt(0) === "-" &&
-    thirdNumber.charAt(0) === "-"
-  ) {
-    display.innerText = `${firstNumber} ${symbol} ${secondNumber} ${secondSymbol} ${thirdNumber.slice(
-      1
-    )}`;
-  }
-  // limiting digits on the screen
-  if (display.innerText.length >= 14) {
-    display.innerText = display.innerText.slice(1, 13);
-  }
+    // if the last number is positive,change it to be negative
+  } else if (lastNumber.charAt(0) !== "-") {
+    lastNumber = "-"+lastNumber
+    let withoutLastNumber: string[] = splitEquation.slice(1).reverse()
+    display.innerText = withoutLastNumber.join(" ")+" "+ lastNumber
+  }  // if the last number is negative,change it to be positive
+    else if (lastNumber.charAt(0) === "-") {
+    lastNumber = lastNumber.slice(1)
+    let withoutLastNumber: string[] = splitEquation.slice(1).reverse()
+    display.innerText = withoutLastNumber.join(" ")+" "+ lastNumber
+  } 
 };
 
 const handlePercentage = (event: Event) => {
   // splits the string into an array
-  let splitEquation: string[] = display.innerText.split(" ");
-  let firstNumber: string = splitEquation[0];
-  let firstSymbol: string = splitEquation[1];
-  let secondNumber: string = splitEquation[2];
-  let secondSymbol: string = splitEquation[3];
-  let thirdNumber: string = splitEquation[4];
+  let splitEquation: string[] = display.innerText.split(" ").reverse();
+  let lastNumber:string = splitEquation[0]
 
   //if just a zero is on screen, don't change display
   if (display.innerText === "0") {
     display.innerText = "0";
-    // if there is no symbol divide to first number by 100
-  } else if (!firstSymbol) {
-    display.innerText = Number(firstNumber) / 100;
-    // if there is a symbol, keep the first number the same and divide the second by 100
-  } else if (firstSymbol && !secondSymbol) {
-    display.innerText = `${firstNumber} ${firstSymbol} ${
-      Number(secondNumber) / 100
-    }`;
-  } else if (firstSymbol && secondSymbol) {
-    display.innerText = `${firstNumber} ${firstSymbol} ${secondNumber} ${secondSymbol} ${
-      Number(thirdNumber) / 100
-    }`;
-  }
-  // limiting digits on the screen
-  if (display.innerText.length >= 14) {
-    display.innerText = display.innerText.slice(1, 13);
-  }
+    // divide the last number by 100
+  } else  {
+    lastNumber = Number(lastNumber)/100 as number
+    let withoutLastNumber: string[] = splitEquation.slice(1).reverse()
+    display.innerText = withoutLastNumber.join(" ")+" "+ lastNumber
+  }  
 };
 
 const handleDecimal = (event: Event) => {
@@ -278,8 +155,7 @@ const handleDecimal = (event: Event) => {
 
 //creating an array
 const handleEquals = (event: Event) => {
-  let finalEquation: string = display.innerText;
-  finalEquation = finalEquation.split(" ");
+  let finalEquation: string[] = display.innerText.split(" ");
   let firstNumber: number = Number(finalEquation[0]);
   let firstSymbol: string = finalEquation[1];
   let secondNumber: number = Number(finalEquation[2]);
