@@ -36,11 +36,16 @@ if (!selectpercentage || !selectPlusMinus || !selectEquals) {
   throw new Error("issue with selectors");
 }
 
+// function for adding numbers onto screen
 selectInput.forEach((number) => {
   number.addEventListener("click", () => {
     if (display.innerText === "0") {
       display.innerText = number.getAttribute("id");
-    } // if there is a symbol last, add a space and the selected number, if not just add the number to the end
+    } else if (display.innerText.length >= 12) {
+      display.innerText = display.innerText
+    }
+    
+    // if there is a symbol last, add a space and the selected number, if not just add the number to the end
     else if (
       display.innerText.charAt(display.innerText.length - 1) === "+" ||
       display.innerText.charAt(display.innerText.length - 1) === "-" ||
@@ -64,11 +69,14 @@ selectInput.forEach((number) => {
   });
 });
 
+// function for adding symbols onto screen
 selectSymbol.forEach((symbol) => {
   symbol.addEventListener("click", () => {
 
     if (display.innerText === "0") {
       display.innerText = display.innerText;
+    } else if (display.innerText.length >= 12) {
+      display.innerText = display.innerText
     } else if (
       symbol.getAttribute("id") === "+" ||
       symbol.getAttribute("id") === "-" ||
@@ -82,7 +90,6 @@ selectSymbol.forEach((symbol) => {
 });
 
 //functions to handle symbols on screen. Making sure they can't be repeated
-
 const handleClear = (event: Event) => {
   display.innerText = "0";
 };
@@ -96,18 +103,17 @@ const handlePlusMinus = (event: Event) => {
   //if just a zero is on screen, don't change display
   if (display.innerText === "0") {
     display.innerText = "0";
-    // if there is no symbol and the first number is positive, change it to be negative
+    // if the last number is positive,change it to be negative
   } else if (lastNumber.charAt(0) !== "-") {
     lastNumber = "-"+lastNumber
     let withoutLastNumber: string[] = splitEquation.slice(1).reverse()
     display.innerText = withoutLastNumber.join(" ")+" "+ lastNumber
-  }  else if (lastNumber.charAt(0) === "-") {
+  }  // if the last number is negative,change it to be positive
+    else if (lastNumber.charAt(0) === "-") {
     lastNumber = lastNumber.slice(1)
     let withoutLastNumber: string[] = splitEquation.slice(1).reverse()
     display.innerText = withoutLastNumber.join(" ")+" "+ lastNumber
   } 
-
-
 };
 
 const handlePercentage = (event: Event) => {
@@ -118,7 +124,7 @@ const handlePercentage = (event: Event) => {
   //if just a zero is on screen, don't change display
   if (display.innerText === "0") {
     display.innerText = "0";
-    // if there is no symbol divide to first number by 100
+    // divide the last number by 100
   } else  {
     lastNumber = Number(lastNumber)/100 as number
     let withoutLastNumber: string[] = splitEquation.slice(1).reverse()
@@ -149,8 +155,7 @@ const handleDecimal = (event: Event) => {
 
 //creating an array
 const handleEquals = (event: Event) => {
-  let finalEquation: string = display.innerText;
-  finalEquation = finalEquation.split(" ");
+  let finalEquation: string[] = display.innerText.split(" ");
   let firstNumber: number = Number(finalEquation[0]);
   let firstSymbol: string = finalEquation[1];
   let secondNumber: number = Number(finalEquation[2]);
