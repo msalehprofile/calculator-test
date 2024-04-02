@@ -3,35 +3,35 @@
     padding: 0;
     box-sizing: border-box;
 }
-.screen {
-    height: auto;
+
+.calc-app {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.scientific-buttons {
+// scientific buttons are not visible on portrait layout
+.calculator__scientific-buttons {
     display: none;
 }
 
-#app {
+#calculator {
     width: 100%;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 350px 1fr;
+    grid-template-rows: calc(100vh/2.3) 1fr;
     gap: 15px;
     margin: 15px 18px;
 
-
-    .all-buttons {
-        .main__buttons {
+    .calculator__all-buttons {
+        .calculator__main-buttons {
             width: 100%;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(5, calc(400px/5));
+            grid-template-rows: repeat(5, calc(calc(100vh*0.45)/5));
             gap: 10px;
 
-            
             .zero {
                 grid-row: 5;
                 grid-column: 1/ 3;
@@ -40,9 +40,9 @@
         }
     }
 
-    &__screen {
+    &__display {
         text-align: right;
-        padding: 270px 20px 20px;
+        padding: calc(100%/1.25) 20px 20px;
     }
 
     &__zero {
@@ -51,45 +51,83 @@
     }
 }
 
-@media screen and (min-width: 800px) {
-    .all-buttons {
-        justify-content: center;
-        display: grid;
-        grid-template-columns: 60% 40%;
-        grid-template-rows: 280px;
-        gap: 10px;
-        margin: 0px 10px;
+
+
+// if iphone SE change the padding on the screen
+@media screen and (max-width: 390px) {
+    #calculator__display {
+        padding: calc(100%/1.55) 20px 20px;
     }
-    
-    #app {
+}
+
+
+//iphone SE sideways
+@media screen and (min-width: 667px) {
+    #calculator {
         width: 100%;
         height: 360px;
         display: flex;
         flex-direction: column;
         
-        #app__screen {
+        &__display {
             grid-column: 1/3 ;
             grid-row: 1;
             height: 90px;
             padding: 10px 20px;
         }
 
-        .all-buttons {
-            .scientific-buttons {
-                grid-column: 1/2;
-                grid-row: 1;
-                width: 100%;
+        .calculator__all-buttons {
+            justify-content: center;
+            display: grid;
+            grid-template-columns: 60% 40%;
+            grid-template-rows: 280px;
+            gap: 10px;
+            margin: 0px 5px;
+
+            .calculator__scientific-buttons {
                 display: grid;
                 grid-template-columns: repeat(6, 1fr);
                 grid-template-rows: repeat(5, 1fr);
-                gap: 10px;
+                gap: 5px;
+
+                .scientific-button {
+                    height:40px;
+                    width: 58.3px;
+                }
             }
 
-            .main__buttons {
+            .calculator__main-buttons {
                     width: 100%;
                     display: grid;
                     grid-template-columns: repeat(4, 1fr);
                     grid-template-rows: repeat(5, 1fr);
+                    gap: 5px;
+
+                    .main-buttons {
+                        height:40px;
+
+                    }
+            }
+}
+    }
+}
+
+@media screen and (min-width: 800px) {
+    #calculator {
+        .calculator__all-buttons {
+            gap: 10px;
+            margin: 0px 10px;
+
+            .calculator__scientific-buttons {
+                gap: 10px;
+
+                .scientific-button {
+                    height:40px;
+                    width: 70px;
+                }
+            }
+
+            .calculator__main-buttons {
                     gap: 10px;
             }
         }

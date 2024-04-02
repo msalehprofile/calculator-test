@@ -5,12 +5,14 @@ $color-vertical: rgb(158, 163, 255);
 $color-horizontal: rgb(254, 193, 108);
 $color-shadow: rgb(202, 202, 202);
 $color-science: rgb(182, 218, 185);
+$color-screen: #ffffff;
 
 $font-size: 25px;
 $font-style: 'Reddit Mono', sans-serif;
 
-#app__screen {
+#calculator__display {
     box-shadow: 3px 4px 4px $color-shadow;
+    background-color: $color-screen;
     border: 1px solid $color-shadow;
     border-radius: 15px;
     font-size: 45px;
@@ -20,7 +22,7 @@ $font-style: 'Reddit Mono', sans-serif;
     
 }
 
-.app__button {
+.main-buttons   {
     box-shadow: 3px 4px 4px $color-shadow;
     border-radius: 15px;
     font-size: $font-size;
@@ -36,7 +38,7 @@ $font-style: 'Reddit Mono', sans-serif;
         }
     }
 
-    &--main {
+    &--middle {
         background-color: $color-number;
         border: 1px solid $color-number;
 
@@ -56,8 +58,10 @@ $font-style: 'Reddit Mono', sans-serif;
 
 }
 
-.scientific-buttons {
-    .app__button {
+.calculator__scientific-buttons {
+    .scientific-button {
+        box-shadow: 3px 4px 4px $color-shadow;
+        border-radius: 15px;
         font-size: 18px;
         width: 70px;
         font-weight: 300;
