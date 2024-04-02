@@ -10,20 +10,20 @@ const hour = date.getHours();
 // change background colour if it is later than 7pm
 
 // number query selectors
-const selectInput = document.querySelectorAll<HTMLButtonElement>(".app__input");
+const selectInput = document.querySelectorAll<HTMLButtonElement>(".main-buttons__number");
 const selectDecimal =
-  document.querySelector<HTMLButtonElement>(".app__decimal");
+  document.querySelector<HTMLButtonElement>(".main-buttons__decimal");
 const selectSymbol =
-  document.querySelectorAll<HTMLButtonElement>(".app__symbol");
+  document.querySelectorAll<HTMLButtonElement>(".main-buttons__symbol");
 
-const selectClear = document.querySelector<HTMLButtonElement>("#app__clear");
+const selectClear = document.querySelector<HTMLButtonElement>("#main-buttons__clear");
 
 // symbols query selectors
 const selectPlusMinus =
-  document.querySelector<HTMLButtonElement>("#app__plus-minus");
+  document.querySelector<HTMLButtonElement>("#main-buttons__plus-minus");
 const selectpercentage =
-  document.querySelector<HTMLButtonElement>("#app__percentage");
-const selectEquals = document.querySelector<HTMLButtonElement>("#app__equals");
+  document.querySelector<HTMLButtonElement>("#main-buttons__percentage");
+const selectEquals = document.querySelector<HTMLButtonElement>("#main-buttons__equals");
 
 // issue with numbers & display
 if (!display || !selectClear || !selectDecimal) {
@@ -40,7 +40,7 @@ if (!selectpercentage || !selectPlusMinus || !selectEquals) {
 selectInput.forEach((number) => {
   number.addEventListener("click", () => {
     if (display.innerText === "0") {
-      display.innerText = number.getAttribute("id");
+      display.innerText = number.getAttribute("id") as string;
     } else if (display.innerText.length >= 12) {
       display.innerText = display.innerText
     }
@@ -90,11 +90,11 @@ selectSymbol.forEach((symbol) => {
 });
 
 //functions to handle symbols on screen. Making sure they can't be repeated
-const handleClear = (event: Event) => {
+const handleClear = () => {
   display.innerText = "0";
 };
 
-const handlePlusMinus = (event: Event) => {
+const handlePlusMinus = () => {
   // splits the string into an array
   let splitEquation: string[] = display.innerText.split(" ").reverse();
   let lastNumber:string = splitEquation[0]
@@ -116,10 +116,10 @@ const handlePlusMinus = (event: Event) => {
   } 
 };
 
-const handlePercentage = (event: Event) => {
+const handlePercentage = () => {
   // splits the string into an array
   let splitEquation: string[] = display.innerText.split(" ").reverse();
-  let lastNumber:string = splitEquation[0]
+  let lastNumber:string | number = splitEquation[0]
 
   //if just a zero is on screen, don't change display
   if (display.innerText === "0") {
@@ -132,7 +132,7 @@ const handlePercentage = (event: Event) => {
   }  
 };
 
-const handleDecimal = (event: Event) => {
+const handleDecimal = () => {
   if (display.innerText === "0") {
     display.innerText = " 0.";
   } else if (display.innerText.charAt(display.innerText.length - 1) === ".") {
@@ -154,7 +154,7 @@ const handleDecimal = (event: Event) => {
 };
 
 //creating an array
-const handleEquals = (event: Event) => {
+const handleEquals = () => {
   let finalEquation: string[] = display.innerText.split(" ");
   let firstNumber: number = Number(finalEquation[0]);
   let firstSymbol: string = finalEquation[1];
@@ -293,10 +293,6 @@ const handleEquals = (event: Event) => {
     secondSymbol === "*"
   ) {
     display.innerText = firstNumber * secondNumber * thirdNumber;
-  }
-  // limiting digits on the screen
-  if (display.innerText.length >= 14) {
-    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
