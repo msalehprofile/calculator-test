@@ -5,12 +5,14 @@ $color-vertical: rgb(158, 163, 255);
 $color-horizontal: rgb(254, 193, 108);
 $color-shadow: rgb(202, 202, 202);
 $color-science: rgb(182, 218, 185);
+$color-screen: #ffffff;
 
 $font-size: 25px;
 $font-style: 'Reddit Mono', sans-serif;
 
 #calculator__display {
     box-shadow: 3px 4px 4px $color-shadow;
+    background-color: $color-screen;
     border: 1px solid $color-shadow;
     border-radius: 15px;
     font-size: 45px;
