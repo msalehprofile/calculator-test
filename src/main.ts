@@ -5,8 +5,10 @@ const display = document.querySelector<HTMLHeadingElement>(
 
 // background query selector
 const background = document.querySelector<HTMLBodyElement>(".calc-app");
-const mainBorderShadows = document.querySelectorAll<HTMLBodyElement>(".main-buttons");
-const scienceBorderShadows = document.querySelectorAll<HTMLBodyElement>(".scientific-button");
+const mainBorderShadows =
+  document.querySelectorAll<HTMLBodyElement>(".main-buttons");
+const scienceBorderShadows =
+  document.querySelectorAll<HTMLBodyElement>(".scientific-button");
 
 // getting the current date and time
 const date = new Date();
@@ -19,17 +21,17 @@ if (!background || !mainBorderShadows || !scienceBorderShadows) {
 
 // change background colour after 7pm
 if (hour > 19) {
-  if(display != null) {
+  if (display != null) {
     background.style.backgroundColor = "#2a3439";
-    display.style.boxShadow = '3px 4px 4px #2a3439';
+    display.style.boxShadow = "3px 4px 4px #2a3439";
     mainBorderShadows.forEach((button) => {
-        button.style.boxShadow = '3px 4px 4px #2a3439'
-        })
+      button.style.boxShadow = "3px 4px 4px #2a3439";
+    });
     scienceBorderShadows.forEach((button) => {
-        button.style.boxShadow = '3px 4px 4px #2a3439'
-        });
+      button.style.boxShadow = "3px 4px 4px #2a3439";
+    });
   }
-} 
+}
 
 // number query selectors
 const selectInput = document.querySelectorAll<HTMLButtonElement>(
@@ -58,7 +60,13 @@ const selectEquals = document.querySelector<HTMLButtonElement>(
 );
 
 // issue with numbers & display
-if (!display || !selectClear || !selectDecimal || !selectInput || !selectSymbol) {
+if (
+  !display ||
+  !selectClear ||
+  !selectDecimal ||
+  !selectInput ||
+  !selectSymbol
+) {
   throw new Error("issue with selectors");
 }
 
@@ -72,8 +80,8 @@ selectInput.forEach((number) => {
   number.addEventListener("click", () => {
     if (display.innerText === "0") {
       display.innerText = number.getAttribute("id") as string;
-    } // if the screen is showing 12 characters do not add any more 
-      else if (display.innerText.length >= 12) {
+    } // if the screen is showing 12 characters do not add any more
+    else if (display.innerText.length >= 12) {
       display.innerText = display.innerText;
     }
 
@@ -106,18 +114,24 @@ selectInput.forEach((number) => {
 selectSymbol.forEach((symbol) => {
   symbol.addEventListener("click", () => {
     //if display is 0 or the last character is a symbol, dont change screen
-    if (display.innerText === "0" || display.innerText.charAt(display.innerText.length-1) === "+" || display.innerText.charAt(display.innerText.length-1) === "-" || display.innerText.charAt(display.innerText.length-1) === "*" || display.innerText.charAt(display.innerText.length-1) === "/") {
+    if (
+      display.innerText === "0" ||
+      display.innerText.charAt(display.innerText.length - 1) === "+" ||
+      display.innerText.charAt(display.innerText.length - 1) === "-" ||
+      display.innerText.charAt(display.innerText.length - 1) === "*" ||
+      display.innerText.charAt(display.innerText.length - 1) === "/"
+    ) {
       display.innerText = display.innerText;
     } // if the screen is showing 12 characters do not add any more
-      else if (display.innerText.length >= 12) {
+    else if (display.innerText.length >= 12) {
       display.innerText = display.innerText;
     } else if (
       symbol.getAttribute("id") === "+" ||
       symbol.getAttribute("id") === "-" ||
       symbol.getAttribute("id") === "/" ||
       symbol.getAttribute("id") === "*"
-    ) // else display the chosen symbol
-      {
+    ) {
+      // else display the chosen symbol
       display.innerText =
         display.innerText + " " + symbol.getAttribute("id") + " ";
     }
@@ -137,15 +151,19 @@ const handlePlusMinus = () => {
 
   //if just a zero is on screen, don't change display
   if (display.innerText === "0") {
-    display.innerText = "0"; 
+    display.innerText = "0";
   } // if the screen is showing 12 characters do not add any more
-    else if (display.innerText.length >= 12) {
+  else if (display.innerText.length >= 12) {
     display.innerText = display.innerText;
   } // if the last character is a symbol, dont change
-    else if(display.innerText.charAt(display.innerText.length-1) === "+" || display.innerText.charAt(display.innerText.length-1) === "*" || display.innerText.charAt(display.innerText.length-1) === "/") {
-    display.innerText = display.innerText
+  else if (
+    display.innerText.charAt(display.innerText.length - 1) === "+" ||
+    display.innerText.charAt(display.innerText.length - 1) === "*" ||
+    display.innerText.charAt(display.innerText.length - 1) === "/"
+  ) {
+    display.innerText = display.innerText;
   } // if the last number is positive,change it to be negative
-    else if (lastNumber.charAt(0) !== "-") {
+  else if (lastNumber.charAt(0) !== "-") {
     lastNumber = "-" + lastNumber;
     let withoutLastNumber: string[] = splitEquation.slice(1).reverse();
     display.innerText = withoutLastNumber.join(" ") + " " + lastNumber;
@@ -166,13 +184,18 @@ const handlePercentage = () => {
   if (display.innerText === "0") {
     display.innerText = "0";
   } // if the screen is showing 12 characters do not add any more
-    else if (display.innerText.length >= 12) {
+  else if (display.innerText.length >= 12) {
     display.innerText = display.innerText;
   } // if the last character is a symbol, dont change
-    else if(display.innerText.charAt(display.innerText.length-1) === "+" || display.innerText.charAt(display.innerText.length-1) === "*" || display.innerText.charAt(display.innerText.length-1) === "/" || display.innerText.charAt(display.innerText.length-1) === "-") {
-    display.innerText = display.innerText
+  else if (
+    display.innerText.charAt(display.innerText.length - 1) === "+" ||
+    display.innerText.charAt(display.innerText.length - 1) === "*" ||
+    display.innerText.charAt(display.innerText.length - 1) === "/" ||
+    display.innerText.charAt(display.innerText.length - 1) === "-"
+  ) {
+    display.innerText = display.innerText;
   } // divide the last number by 100
-    else {
+  else {
     lastNumber = (Number(lastNumber) / 100) as number;
     let withoutLastNumber: string[] = splitEquation.slice(1).reverse();
     display.innerText = withoutLastNumber.join(" ") + " " + lastNumber;
@@ -183,10 +206,10 @@ const handleDecimal = () => {
   if (display.innerText === "0") {
     display.innerText = " 0.";
   } // if the last character is . then dont change display
-    else if (display.innerText.charAt(display.innerText.length - 1) === ".") {
+  else if (display.innerText.charAt(display.innerText.length - 1) === ".") {
     display.innerText = display.innerText;
   } // if last character is a symbol add 0. to the end
-    else if (
+  else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "*" ||
@@ -194,7 +217,7 @@ const handleDecimal = () => {
   ) {
     display.innerText = display.innerText + " 0.";
   } // else just add a decimal
-    else {
+  else {
     display.innerText = display.innerText + ".";
   }
 };
@@ -211,44 +234,44 @@ const handleEquals = () => {
   // maths equations
   // if the array length is 3 and the first symbol is + then add the numbers together
   if (firstSymbol === "+" && finalEquation.length == 3) {
-    display.innerText = String(firstNumber + secondNumber);
+    display.innerText = String(firstNumber + secondNumber).slice(0,11);
   } // if the array length is 3 and the first symbol is - then subtract
   else if (firstSymbol === "-" && finalEquation.length == 3) {
-    display.innerText = String(firstNumber - secondNumber);
+    display.innerText = String(firstNumber - secondNumber).slice(0,11);
   } // if the array length is 3 and the first symbol is x then times the numbers together
   else if (firstSymbol === "*" && finalEquation.length == 3) {
-    display.innerText = String(firstNumber * secondNumber);
+    display.innerText = String(firstNumber * secondNumber).slice(0,11);
   } // if the array length is 3 and the first symbol is / then divide the numbers
   else if (firstSymbol === "/" && finalEquation.length == 3) {
-    display.innerText = String(firstNumber / secondNumber);
+    display.innerText = String(firstNumber / secondNumber).slice(0,11);
   } // if the array length is 5, and first and second symbols are + then add all together
   else if (
     firstSymbol === "+" &&
     finalEquation.length == 5 &&
     secondSymbol === "+"
   ) {
-    display.innerText = String(firstNumber + secondNumber + thirdNumber);
+    display.innerText = String(firstNumber + secondNumber + thirdNumber).slice(0,11);
   } // if the array length is 5, the first sybol is + and second symbol is -
   else if (
     firstSymbol === "+" &&
     finalEquation.length == 5 &&
     secondSymbol === "-"
   ) {
-    display.innerText = String(firstNumber - secondNumber - thirdNumber);
+    display.innerText = String(firstNumber - secondNumber - thirdNumber).slice(0,11);
   } // if the array length is 5, the first sybol is + and second symbol is /
   else if (
     firstSymbol === "+" &&
     finalEquation.length == 5 &&
     secondSymbol === "/"
   ) {
-    display.innerText = String(firstNumber + secondNumber / thirdNumber);
+    display.innerText = String(firstNumber + secondNumber / thirdNumber).slice(0,11);
   } // if the array length is 5, the first sybol is + and second symbol is *
   else if (
     firstSymbol === "+" &&
     finalEquation.length == 5 &&
     secondSymbol === "*"
   ) {
-    display.innerText = String(firstNumber + secondNumber * thirdNumber);
+    display.innerText = String(firstNumber + secondNumber * thirdNumber).slice(0,11);
   }
   // minus first
   // if the array length is 5, and first symbol is - and second symbol is +
@@ -257,28 +280,28 @@ const handleEquals = () => {
     finalEquation.length == 5 &&
     secondSymbol === "+"
   ) {
-    display.innerText = String(firstNumber - secondNumber + thirdNumber);
+    display.innerText = String(firstNumber - secondNumber + thirdNumber).slice(0,11);
   } // if the array length is 5, and first and second symbols are - then subract
   else if (
     firstSymbol === "-" &&
     finalEquation.length == 5 &&
     secondSymbol === "-"
   ) {
-    display.innerText = String(firstNumber - secondNumber - thirdNumber);
+    display.innerText = String(firstNumber - secondNumber - thirdNumber).slice(0,11);
   } // if the array length is 5, the first symbol is - and second symbol is /
   else if (
     firstSymbol === "-" &&
     finalEquation.length == 5 &&
     secondSymbol === "/"
   ) {
-    display.innerText = String(firstNumber - secondNumber / thirdNumber);
+    display.innerText = String(firstNumber - secondNumber / thirdNumber).slice(0,11);
   } // if the array length is 5, the first symbol is - and second symbol is *
   else if (
     firstSymbol === "-" &&
     finalEquation.length == 5 &&
     secondSymbol === "*"
   ) {
-    display.innerText = String(firstNumber - secondNumber * thirdNumber);
+    display.innerText = String(firstNumber - secondNumber * thirdNumber).slice(0,11);
   }
   // divide first
   // if the array length is 5, and first symbol is / and second symbol is +
@@ -287,28 +310,28 @@ const handleEquals = () => {
     finalEquation.length == 5 &&
     secondSymbol === "+"
   ) {
-    display.innerText = String(firstNumber / secondNumber + thirdNumber);
+    display.innerText = String(firstNumber / secondNumber + thirdNumber).slice(0,11);
   } // if the array length is 5, and first symbol is / and second symbol is -
   else if (
     firstSymbol === "/" &&
     finalEquation.length == 5 &&
     secondSymbol === "-"
   ) {
-    display.innerText = String(firstNumber / secondNumber - thirdNumber);
+    display.innerText = String(firstNumber / secondNumber - thirdNumber).slice(0,11);
   } // if the array length is 5, the first and second symbol are /
   else if (
     firstSymbol === "/" &&
     finalEquation.length == 5 &&
     secondSymbol === "/"
   ) {
-    display.innerText = String(firstNumber / secondNumber / thirdNumber);
+    display.innerText = String(firstNumber / secondNumber / thirdNumber).slice(0,11);
   } // if the array length is 5, the first symbol is / and second symbol is *
   else if (
     firstSymbol === "/" &&
     finalEquation.length == 5 &&
     secondSymbol === "*"
   ) {
-    display.innerText = String((firstNumber / secondNumber) * thirdNumber);
+    display.innerText = String((firstNumber / secondNumber) * thirdNumber).slice(0,11);
   }
   // multiply first
   // if the array length is 5, and first symbol is * and second symbol is +
@@ -317,28 +340,28 @@ const handleEquals = () => {
     finalEquation.length == 5 &&
     secondSymbol === "+"
   ) {
-    display.innerText = String(firstNumber * secondNumber + thirdNumber);
+    display.innerText = String(firstNumber * secondNumber + thirdNumber).slice(0,11);
   } // if the array length is 5, and first symbol is * and second symbol is -
   else if (
     firstSymbol === "*" &&
     finalEquation.length == 5 &&
     secondSymbol === "-"
   ) {
-    display.innerText = String(firstNumber * secondNumber - thirdNumber);
+    display.innerText = String(firstNumber * secondNumber - thirdNumber).slice(0,11);
   } // if the array length is 5, and first symbol is * and second symbol is /
   else if (
     firstSymbol === "*" &&
     finalEquation.length == 5 &&
     secondSymbol === "/"
   ) {
-    display.innerText = String((firstNumber * secondNumber) / thirdNumber);
+    display.innerText = String((firstNumber * secondNumber) / thirdNumber).slice(0,11);
   } // if the array length is 5, the first and second symbol are /
   else if (
     firstSymbol === "*" &&
     finalEquation.length == 5 &&
     secondSymbol === "*"
   ) {
-    display.innerText = String(firstNumber * secondNumber * thirdNumber);
+    display.innerText = String(firstNumber * secondNumber * thirdNumber).slice(0,11);
   }
 };
 

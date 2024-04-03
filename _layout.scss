@@ -53,13 +53,19 @@
 
 
 
-// if iphone SE change the padding on the screen
+// if iphone 12plus change the padding on the screen
 @media screen and (max-width: 390px) {
+    #calculator__display {
+        padding: calc(100%/1.25) 20px 20px;
+    }
+}
+
+// if iphone SE change the padding on the screen
+@media screen and (max-width: 375px) {
     #calculator__display {
         padding: calc(100%/1.55) 20px 20px;
     }
 }
-
 
 //iphone SE sideways
 @media screen and (min-width: 667px) {
