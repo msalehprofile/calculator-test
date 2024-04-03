@@ -105,13 +105,13 @@
 
                     .main-buttons {
                         height:40px;
-
                     }
             }
 }
     }
 }
 
+// for phones bigger than SE sideways view
 @media screen and (min-width: 800px) {
     #calculator {
         .calculator__all-buttons {
