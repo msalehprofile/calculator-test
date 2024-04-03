@@ -1,5 +1,4 @@
 // screen query selector
-
 const display = document.querySelector<HTMLHeadingElement>(
   "#calculator__display"
 );
@@ -9,9 +8,9 @@ const background = document.querySelector<HTMLBodyElement>(".calc-app");
 const mainBorderShadows = document.querySelectorAll<HTMLBodyElement>(".main-buttons");
 const scienceBorderShadows = document.querySelectorAll<HTMLBodyElement>(".scientific-button");
 
+// getting the current date and time
 const date = new Date();
 const hour = date.getHours();
-console.log(hour)
 
 // issue with background selector
 if (!background || !mainBorderShadows || !scienceBorderShadows) {
@@ -59,12 +58,11 @@ const selectEquals = document.querySelector<HTMLButtonElement>(
 );
 
 // issue with numbers & display
-if (!display || !selectClear || !selectDecimal) {
+if (!display || !selectClear || !selectDecimal || !selectInput || !selectSymbol) {
   throw new Error("issue with selectors");
 }
 
 // symbols error finder
-
 if (!selectpercentage || !selectPlusMinus || !selectEquals) {
   throw new Error("issue with selectors");
 }
@@ -74,7 +72,8 @@ selectInput.forEach((number) => {
   number.addEventListener("click", () => {
     if (display.innerText === "0") {
       display.innerText = number.getAttribute("id") as string;
-    } else if (display.innerText.length >= 12) {
+    } // if the screen is showing 12 characters do not add any more 
+      else if (display.innerText.length >= 12) {
       display.innerText = display.innerText;
     }
 
@@ -106,23 +105,26 @@ selectInput.forEach((number) => {
 // function for adding symbols onto screen
 selectSymbol.forEach((symbol) => {
   symbol.addEventListener("click", () => {
-    if (display.innerText === "0") {
+    //if display is 0 or the last character is a symbol, dont change screen
+    if (display.innerText === "0" || display.innerText.charAt(display.innerText.length-1) === "+" || display.innerText.charAt(display.innerText.length-1) === "-" || display.innerText.charAt(display.innerText.length-1) === "*" || display.innerText.charAt(display.innerText.length-1) === "/") {
       display.innerText = display.innerText;
-    } else if (display.innerText.length >= 12) {
+    } // if the screen is showing 12 characters do not add any more
+      else if (display.innerText.length >= 12) {
       display.innerText = display.innerText;
     } else if (
       symbol.getAttribute("id") === "+" ||
       symbol.getAttribute("id") === "-" ||
       symbol.getAttribute("id") === "/" ||
       symbol.getAttribute("id") === "*"
-    ) {
+    ) // else display the chosen symbol
+      {
       display.innerText =
         display.innerText + " " + symbol.getAttribute("id") + " ";
     }
   });
 });
 
-//functions to handle symbols on screen. Making sure they can't be repeated
+//functions to handle clear button
 const handleClear = () => {
   display.innerText = "0";
 };
@@ -135,11 +137,14 @@ const handlePlusMinus = () => {
 
   //if just a zero is on screen, don't change display
   if (display.innerText === "0") {
-    display.innerText = "0";
-    // if the last number is positive,change it to be negative
-  } else if(lastNumber.charAt(0) === "+" || lastNumber.charAt(0) === "*" || lastNumber.charAt(0) === "/") {
+    display.innerText = "0"; 
+  } // if the screen is showing 12 characters do not add any more
+    else if (display.innerText.length >= 12) {
+    display.innerText = display.innerText;
+  } // if the last character is a symbol, dont change
+    else if(display.innerText.charAt(display.innerText.length-1) === "+" || display.innerText.charAt(display.innerText.length-1) === "*" || display.innerText.charAt(display.innerText.length-1) === "/") {
     display.innerText = display.innerText
-  }
+  } // if the last number is positive,change it to be negative
     else if (lastNumber.charAt(0) !== "-") {
     lastNumber = "-" + lastNumber;
     let withoutLastNumber: string[] = splitEquation.slice(1).reverse();
@@ -160,8 +165,14 @@ const handlePercentage = () => {
   //if just a zero is on screen, don't change display
   if (display.innerText === "0") {
     display.innerText = "0";
-    // divide the last number by 100
-  } else {
+  } // if the screen is showing 12 characters do not add any more
+    else if (display.innerText.length >= 12) {
+    display.innerText = display.innerText;
+  } // if the last character is a symbol, dont change
+    else if(display.innerText.charAt(display.innerText.length-1) === "+" || display.innerText.charAt(display.innerText.length-1) === "*" || display.innerText.charAt(display.innerText.length-1) === "/" || display.innerText.charAt(display.innerText.length-1) === "-") {
+    display.innerText = display.innerText
+  } // divide the last number by 100
+    else {
     lastNumber = (Number(lastNumber) / 100) as number;
     let withoutLastNumber: string[] = splitEquation.slice(1).reverse();
     display.innerText = withoutLastNumber.join(" ") + " " + lastNumber;
@@ -171,21 +182,20 @@ const handlePercentage = () => {
 const handleDecimal = () => {
   if (display.innerText === "0") {
     display.innerText = " 0.";
-  } else if (display.innerText.charAt(display.innerText.length - 1) === ".") {
+  } // if the last character is . then dont change display
+    else if (display.innerText.charAt(display.innerText.length - 1) === ".") {
     display.innerText = display.innerText;
-  } else if (
+  } // if last character is a symbol add 0. to the end
+    else if (
     display.innerText.charAt(display.innerText.length - 1) === "+" ||
     display.innerText.charAt(display.innerText.length - 1) === "-" ||
     display.innerText.charAt(display.innerText.length - 1) === "*" ||
     display.innerText.charAt(display.innerText.length - 1) === "/"
   ) {
     display.innerText = display.innerText + " 0.";
-  } else {
+  } // else just add a decimal
+    else {
     display.innerText = display.innerText + ".";
-  }
-  // limiting digits on the screen
-  if (display.innerText.length >= 14) {
-    display.innerText = display.innerText.slice(1, 13);
   }
 };
 
